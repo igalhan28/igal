@@ -5,6 +5,11 @@
             "cwd": "/home/iga/Belgeler/igalhan/igal",
             "binaryPath": "/home/iga/Belgeler/igalhan/igal/prog",
             "binaryArgs": []
+        },
+        {
+            "cwd": "/home/igalhan/Dokumente/Src/igal",
+            "binaryPath": "/home/igalhan/Dokumente/Src/igal/prog",
+            "binaryArgs": []
         }
     ]
 }

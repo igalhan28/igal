@@ -71,22 +71,25 @@ ideg* ideg_sem(char* s)
   return v;
 }
 /* A pointer to a new empty Sexpr ideg */
-ideg* ideg_ixlem(void)
+ideg* ideg_ixade(void)
 {
   ideg* v = malloc(sizeof(ideg));
-
+  printf("const x");
   v->tip = IDEG_IXADE;
   v->tur = 0;
   v->hucre = NULL;
   return v;
 }
 void ideg_print(ideg* v);
-void ixlem_print(ideg* v, char o, char c)
+ideg* degerle_op(ideg* x, char* op);
+
+void ixade_print(ideg* v, char o, char c)
 {
   putchar(o);
+  printf("xprint");
   for (int i = 0; i < v->tur; i++)
     {
-      ideg_print(v->hucre);
+      ideg_print(v->hucre[i]);
       if (i != (v->tur - 1))
         {
           putchar(' ');
@@ -99,6 +102,7 @@ void ixlem_print(ideg* v, char o, char c)
 /* Print an "ideg" */
 void ideg_print(ideg* v)
 {
+  printf("id print");
   switch (v->tip)
     {
     /* In the case the tip is a sayi print it */
@@ -108,107 +112,22 @@ void ideg_print(ideg* v)
     /* In the case the tip is an error */
     case IDEG_HATA:
       /* Check what tip of error it is and print it */
-      printf(v->hata);
+      printf("%s",v->hata);
 
     case IDEG_ISLEC: printf("%s", v->sem);
 
-    case IDEG_IXADE: ixlem_print(v, '(', ')');
+    case IDEG_IXADE: ixade_print(v, '(', ')');
       break;
     }
 }
 
-/* Print an "ideg" followed by a newline */
 
-ideg* degerle_op(ideg x, char* op, ideg y)
-{
-  /* If either value is an error return it */
-  if (x.tip == IDEG_HATA)
-    {
-      return x;
-    }
-  if (y.tip == IDEG_HATA)
-    {
-      return y;
-    }
-
-  /* Otherwise do maths on the sayi values */
-  if (strcmp(op, "+") == 0)
-    {
-      return ideg_sayi(x.sayi + y.sayi);
-    }
-  if (strcmp(op, "-") == 0)
-    {
-      return ideg_sayi(x.sayi - y.sayi);
-    }
-  if (strcmp(op, "*") == 0)
-    {
-      return ideg_sayi(x.sayi * y.sayi);
-    }
-  if (strcmp(op, "/") == 0)
-    {
-      /* If second operand is zero return error */
-      return y.sayi == 0
-      ? ideg_hata("Sıfıra bölünemez!")
-      : ideg_sayi(x.sayi / y.sayi);
-    }
-
-  return ideg_hata("Geçersiz İşlem");
-}
-
-
-
-int main(int argc, char** argv)
-{
-  mpc_parser_t* Sayi = mpc_new("sayi");
-  mpc_parser_t* Islec = mpc_new("islec");
-  mpc_parser_t* Ifade = mpc_new("ifade");
-  mpc_parser_t* Ixade = mpc_new("ixade");
-  mpc_parser_t* igal = mpc_new("igal");
-
-  mpca_lang(MPCA_LANG_DEFAULT,
-            "                                                     \
-      sayi   : /-?[0-9]+/ ;                             \
-      islec : '+' | '-' | '*' | '/' ;                  \
-      ixade     :'(' <ifade>* ')';  \
-      ifade     : <sayi> | <islec> | <ixade> ;  \
-      igal    : /^/ <sayi> <ifade>+ /$/ ;             \
-    ",
-            Sayi, Islec, Ifade, igal);
-
-  puts("igal Version 0.0.0.0.7");
-  puts("Çıkmak için ktrl+c\n");
-
-  while (1)
-    {
-      char* giris = readline("igal> ");
-      add_history(giris);
-
-      mpc_result_t r;
-      if (mpc_parse("<stdin>", giris, igal, &r))
-        {
-          ideg sonuc = degerle(r.output);
-          ideg_println(sonuc);
-          mpc_ast_delete(r.output);
-        }
-      else
-        {
-          mpc_err_print(r.error);
-          mpc_err_delete(r.error);
-        }
-
-
-      free(giris);
-    }
-
-  mpc_cleanup(4, Sayi, Islec, Ifade, igal);
-
-  return 0;
-}
 
 
 
 void ideg_sil(ideg* v)
 {
+  printf("sil");
   switch (v->tip)
     {
     case IDEG_SAYI: break;
@@ -222,13 +141,19 @@ void ideg_sil(ideg* v)
       break;
 
     case IDEG_IXADE:
-      ideg_sil(v->hucre);
+      for (int i = 0; i < v->tur; i++)
+        {
+          ideg_sil(v->hucre[i]);
+        }
+
+      free(v->hucre);
       break;
     }
 }
 
 ideg* ideg_yukle(ideg* v, ideg* x)
 {
+  printf("yukle");
   v->tur++;
   v->hucre = realloc(v->hucre, sizeof(ideg*) * v->tur);
   v->hucre[v->tur - 1] = x;
@@ -237,6 +162,7 @@ ideg* ideg_yukle(ideg* v, ideg* x)
 
 ideg* oku_say(mpc_ast_t* t)
 {
+  printf("oku say");
   long x = strtol(t->contents, NULL, 10);
 
   return errno != ERANGE ? ideg_sayi(x) : ideg_hata("invalid number");
@@ -244,6 +170,7 @@ ideg* oku_say(mpc_ast_t* t)
 
 ideg* ideg_oku(mpc_ast_t* t)
 {
+  printf("1");
   if (strstr(t->tag, "sayi"))
     return oku_say(t);
   if (strstr(t->tag, "islec"))
@@ -251,8 +178,8 @@ ideg* ideg_oku(mpc_ast_t* t)
 
   ideg* x = NULL;
 
-  if (strcmp(t->tag, ">") || strcmp(t->tag, "ixlem"))
-    x = ideg_ixlem();
+  if (strcmp(t->tag, ">") || strcmp(t->tag, "ixade"))
+    x = ideg_ixade();
 
 
   for (int i = 0; i < t->children_num; i++)
@@ -281,28 +208,175 @@ ideg* ideg_oku(mpc_ast_t* t)
     }
   return x;
 }
-
-ideg* idegal(ideg* v, int n)
+ideg* ideg_cıkra(ideg* v, int n)
 {
+  printf("cıkra");
+  ideg* x = v->hucre[n];
+
+  memmove(&v->hucre[n], v->hucre[n + 1], sizeof(ideg*) * (v->tur) - n - 1);
+
+  v->tur--;
+
+  v->hucre = realloc(&v->hucre, sizeof(ideg*) * v->tur);
+
+  return x;
 }
-ideg* ixlem_degerle(ideg* v)
+ideg* ideg_al(ideg* v, int n)
+{
+  printf("al");
+  ideg* x = ideg_cıkra(v, n);
+
+  ideg_sil(v);
+  return x;
+}
+ideg* ixade_degerle(ideg* v)
 {
   for (int i = 0; i < v->tur; i++)
     {
-      v->hucre[i] = degerle(v->hucre[i]);
+      printf("2");
+      v->hucre[i] = ixade_degerle(v->hucre[i]);
     }
 
   for (int i = 0; i < v->tur; i++)
     {
       if (v->hucre[i]->tip == IDEG_HATA)
         {
-          return idegal(v, 0);
+          printf("3");
+          return ideg_al(v, i);
         }
       ;
     }
 
-  if (v->count == 0)
+  if (v->tur == 0)
     {
+      printf("4");
       return v;
     }
+  if (v->tur == 1)
+    {
+      printf("5");
+      return ideg_al(v, 0);
+    }
+  ideg* d = ideg_cıkra(v, 0);
+
+  if (d->tip != IDEG_ISLEC)
+    {
+      printf("err");
+      ideg_sil(d);
+      ideg_sil(v);
+      return ideg_hata("İxlem işleçsiz başlamayaz");
+    }
+
+
+  ideg* sonuc = degerle_op(v, d->sem);
+
+  return sonuc;
+}
+
+ideg* degerle_op(ideg* x, char* op)
+{
+  printf("degop");
+  for (int i = 0; i < x->tur; i++)
+    {
+      if (x->hucre[i]->tip != IDEG_SAYI)
+        {
+          return ideg_hata("İşlem yapılacak öge sayı olmak zorunda!");
+        }
+    }
+
+
+  /* Otherwise do maths on the sayi values */
+  if (strcmp(op, "+") == 0)
+    {
+      for (int i = 1; i < x->tur; i++)
+        {
+          x->hucre[0]->sayi += ideg_cıkra(x, i)->sayi;
+        }
+    }
+
+  if (strcmp(op, "-") == 0)
+    {
+      for (int i = 1; i < x->tur; i++)
+        {
+          x->hucre[0]->sayi -= ideg_cıkra(x, i)->sayi;
+        }
+    }
+
+  if (strcmp(op, "*") == 0)
+    {
+      for (int i = 1; i < x->tur; i++)
+        {
+          x->hucre[0]->sayi *= ideg_cıkra(x, i)->sayi;
+        }
+    }
+
+  if (strcmp(op, "/") == 0)
+    for (int i = 1; i < x->tur; i++)
+      {
+        if (x->hucre[i]->sayi != 0)
+          {
+            x->hucre[0]->sayi /= ideg_cıkra(x, i)->sayi;
+          }
+        else
+          {
+            return ideg_hata("Sıfıra bölünmez!");
+          }
+      }
+}
+ideg* degerle(ideg* v)
+{
+  printf("deg");
+  if (v->tip == IDEG_IXADE)
+    {
+      return(ixade_degerle(v));
+    }
+  return v;
+}
+int main(int argc, char** argv)
+{
+  mpc_parser_t* Sayi = mpc_new("sayi");
+  mpc_parser_t* Islec = mpc_new("islec");
+  mpc_parser_t* Ifade = mpc_new("ifade");
+  mpc_parser_t* Ixade = mpc_new("ixade");
+  mpc_parser_t* igal = mpc_new("igal");
+
+  mpca_lang(MPCA_LANG_DEFAULT,
+            "                                                     \
+      sayi   : /-?[0-9]+/ ;                             \
+      islec : '+' | '-' | '*' | '/' ;                  \
+      ixade     :'(' <ifade>* ')';  \
+      ifade     : <sayi> | <islec> | <ixade> ;  \
+      igal    : /^/ <ifade>* /$/ ;             \
+    ",
+            Sayi, Islec, Ifade, Ixade, igal);
+
+  puts("igal Version 0.0.0.0.7");
+  puts("Çıkmak için ktrl+c\n");
+
+  while (1)
+    {
+      char* giris = readline("igal> ");
+      add_history(giris);
+
+      mpc_result_t r;
+      if (mpc_parse("<stdin>", giris, igal, &r))
+        {
+          ideg* sonuc = degerle(ideg_oku(r.output));
+          ideg_print(sonuc);
+          ideg_sil(sonuc);
+          mpc_ast_delete(r.output);
+        }
+      else
+        {
+          mpc_err_print(r.error);
+          mpc_err_delete(r.error);
+        }
+
+
+      free(giris);
+    }
+
+  mpc_cleanup(5, Sayi, Islec, Ifade, Ixade,igal);
+
+  return 0;
 }
