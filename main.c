@@ -178,8 +178,13 @@ ideg* ideg_oku(mpc_ast_t* t)
 
   ideg* x = NULL;
 
-  if (strcmp(t->tag, ">") || strcmp(t->tag, "ixade"))
+ 
+  if (strcmp(t->tag, ">") == 0){
+     x = ideg_ixade();
+  }
+  if(strstr(t->tag, "ixade")){
     x = ideg_ixade();
+  }
 
 
   for (int i = 0; i < t->children_num; i++)
