@@ -1,7 +1,5 @@
-make prog --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/igalhan/Dokumente/Src/igal'
-gcc -g -Wall -c main.c -o main.o
-gcc -g -Wall -c mpc.c -o mpc.o
-gcc  main.o  mpc.o -Wall -lm -ledit -o prog
-make: Leaving directory '/home/igalhan/Dokumente/Src/igal'
+make prog --dry-run --keep-going --print-directory
+make: Entering directory '/home/iga/Dokumente/igal'
+make: 'prog' is up to date.
+make: Leaving directory '/home/iga/Dokumente/igal'
  

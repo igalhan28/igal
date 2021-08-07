@@ -79,7 +79,6 @@ ideg* ideg_sem(char* s)
 ideg* ideg_ixade(void)
 {
   ideg* v = malloc(sizeof(ideg));
-  printf("const x");
   v->tip = IDEG_IXADE;
   v->tur = 0;
   v->hucre = NULL;
@@ -91,7 +90,6 @@ ideg* degerle_op(ideg* x, char* op);
 void ixade_print(ideg* v, char o, char c)
 {
   putchar(o);
-  printf("xprint");
   for (int i = 0; i < v->tur; i++)
     {
       ideg_print(v->hucre[i]);
@@ -107,7 +105,6 @@ void ixade_print(ideg* v, char o, char c)
 /* Print an "ideg" */
 void ideg_print(ideg* v)
 {
-  printf("id print");
   switch (v->tip)
     {
     /* In the case the tip is a sayi print it */
@@ -132,7 +129,6 @@ void ideg_print(ideg* v)
 
 void ideg_sil(ideg* v)
 {
-  printf("sil");
   switch (v->tip)
     {
     case IDEG_SAYI: break;
@@ -159,7 +155,6 @@ void ideg_sil(ideg* v)
 
 ideg* ideg_yukle(ideg* v, ideg* x)
 {
-  printf("yukle");
   v->tur++;
   v->hucre = realloc(v->hucre, sizeof(ideg*) * v->tur);
   v->hucre[v->tur - 1] = x;
@@ -168,7 +163,6 @@ ideg* ideg_yukle(ideg* v, ideg* x)
 
 ideg* oku_say(mpc_ast_t* t)
 {
-  printf("oku say");
   long x = strtol(t->contents, NULL, 10);
 
   return errno != ERANGE ? ideg_sayi(x) : ideg_hata("invalid number");
@@ -176,7 +170,6 @@ ideg* oku_say(mpc_ast_t* t)
 
 ideg* ideg_oku(mpc_ast_t* t)
 {
-  printf("1");
   if (strstr(t->tag, "sayi"))
     return oku_say(t);
   if (strstr(t->tag, "islec"))
@@ -221,7 +214,6 @@ ideg* ideg_oku(mpc_ast_t* t)
 }
 ideg* ideg_cıkra(ideg* v, int n)
 {
-  printf("cıkra");
   ideg* x = v->hucre[n];
 
   memmove(&v->hucre[n], &v->hucre[n + 1], sizeof(ideg*) * (v->tur - n - 1));
@@ -234,7 +226,6 @@ ideg* ideg_cıkra(ideg* v, int n)
 }
 ideg* ideg_al(ideg* v, int n)
 {
-  printf("al");
   ideg* x = ideg_cıkra(v, n);
 
   ideg_sil(v);
@@ -244,7 +235,6 @@ ideg* ixade_degerle(ideg* v)
 {
   for (int i = 0; i < v->tur; i++)
     {
-      printf("2");
       v->hucre[i] = degerle(v->hucre[i]);
     }
 
@@ -252,7 +242,6 @@ ideg* ixade_degerle(ideg* v)
     {
       if (v->hucre[i]->tip == IDEG_HATA)
         {
-          printf("3");
           return ideg_al(v, i);
         }
       ;
@@ -260,19 +249,16 @@ ideg* ixade_degerle(ideg* v)
 
   if (v->tur == 0)
     {
-      printf("4");
       return v;
     }
   if (v->tur == 1)
     {
-      printf("5");
       return ideg_al(v, 0);
     }
   ideg* d = ideg_cıkra(v, 0);
 
   if (d->tip != IDEG_ISLEC)
     {
-      printf("err");
       ideg_sil(d);
       ideg_sil(v);
       return ideg_hata("İxlem işleçsiz başlamayaz");
@@ -294,8 +280,6 @@ ideg* degerle_op(ideg* x, char* op)
           return ideg_hata("İşlem yapılacak öge sayı olmak zorunda!");
         }
     }
-
-
   /* Otherwise do maths on the sayi values */
   if (strcmp(op, "+") == 0)
     {
@@ -348,7 +332,6 @@ ideg* degerle_op(ideg* x, char* op)
 }
 ideg* degerle(ideg* v)
 {
-  printf("deg");
   if (v->tip == IDEG_IXADE)
     {
       return(ixade_degerle(v));

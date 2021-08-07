@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug  2 16:51:12 2021
+# Make data base, printed on Sat Aug  7 16:30:08 2021
 
 # Variables
 
@@ -15,29 +15,25 @@ GDK_BACKEND = x11
 # environment
 LC_ALL = C
 # environment
-GNOME_SHELL_SESSION_MODE = pop
-# environment
-SSH_AGENT_LAUNCHER = gnome-keyring
+NO_AT_BRIDGE = 1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-2a52a9a6-d138-4e9e-973f-aabbe9b29460.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-38adc237-6e34-4655-95c1-be3e8bfb54ce.sock
 # environment
 LC_NAME = tr_TR.UTF-8
 # environment
 LC_NUMERIC = tr_TR.UTF-8
 # environment
-VSCODE_CWD = /home/igalhan
-# environment
-WINDOWPATH = 3
+VSCODE_CWD = /home/iga
 # makefile (from 'makefile', line 2)
 LIBS = -lm -ledit
 # environment
 LC_ADDRESS = tr_TR.UTF-8
+# environment
+GDM_LANG = de_DE.UTF-8
 # default
 MAKE_COMMAND := make
-# environment
-QT_ACCESSIBILITY = 1
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -47,11 +43,17 @@ VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
 .VARIABLES := 
 # environment
-PWD = /home/igalhan/Dokumente/Src/igal
+PWD = /home/iga/Dokumente/igal
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
-XDG_DATA_DIRS = /usr/share/pop:/usr/share/gnome:/home/igalhan/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+MAIL = /var/spool/mail/iga
+# environment
+XDG_DATA_DIRS = /home/iga/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+OLDPWD = /home/iga
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
@@ -59,19 +61,19 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/igalhan/.config/Code/CachedData/c3f126316369cd610563c75b1b1725e0679adfb3
+VSCODE_CODE_CACHE_PATH = /home/iga/.config/Code/CachedData/c3f126316369cd610563c75b1b1725e0679adfb3
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/gdm/Xauthority
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.OZ2B70
 # default
 .LOADED := 
 # default
-.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
 # makefile
 MAKEFLAGS = pqrR
 # makefile
-CURDIR := /home/igalhan/Dokumente/Src/igal
+CURDIR := /home/iga/Dokumente/igal
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -85,29 +87,33 @@ SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # default
 .SHELLFLAGS := -c
 # environment
-XDG_CONFIG_DIRS = /etc/xdg/xdg-pop:/etc/xdg/xdg-gnome:/etc/xdg
+WAYLAND_DISPLAY = wayland-0
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
-VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=cf71c6b4-b5bb-4188-937b-2a9f220b3d59&iid=cf71c6b4-b5bb-4188-937b-2a9f220b3d59&sid=cf71c6b4-b5bb-4188-937b-2a9f220b3d59","uploadToServer":true}
+XDG_SESSION_DESKTOP = gnome
 # environment
-XDG_SESSION_DESKTOP = pop
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=5d971c6e-c9c5-4cf9-8a46-25d36b2a7afb&iid=5d971c6e-c9c5-4cf9-8a46-25d36b2a7afb&sid=5d971c6e-c9c5-4cf9-8a46-25d36b2a7afb","uploadToServer":true}
 # makefile (from 'makefile', line 1)
 MAKEFILE_LIST := makefile
 # automatic
 @F = $(notdir $@)
 # environment
+ZSH = /home/iga/.oh-my-zsh
+# environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 10327
+VSCODE_PID = 6373
 # environment
-XDG_SESSION_TYPE = x11
+XDG_SESSION_TYPE = wayland
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/pop-os:@/tmp/.ICE-unix/4614,unix/pop-os:/tmp/.ICE-unix/4614
+SESSION_MANAGER = local/igalhan:@/tmp/.ICE-unix/3529,unix/igalhan:/tmp/.ICE-unix/3529
 # automatic
 *F = $(notdir $*)
+# environment
+QT_QPA_PLATFORMTHEME = qt5ct
 # environment
 CHROME_DESKTOP = code-url-handler.desktop
 # environment
@@ -115,19 +121,15 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # environment
-VSCODE_NLS_CONFIG = {"locale":"de","availableLanguages":{"*":"de"},"_languagePackId":"001de9834a40fbde62f409a308aee70e.de","_translationsConfigFile":"/home/igalhan/.config/Code/clp/001de9834a40fbde62f409a308aee70e.de/tcf.json","_cacheRoot":"/home/igalhan/.config/Code/clp/001de9834a40fbde62f409a308aee70e.de","_resolvedLanguagePackCoreLocation":"/home/igalhan/.config/Code/clp/001de9834a40fbde62f409a308aee70e.de/c3f126316369cd610563c75b1b1725e0679adfb3","_corruptedFile":"/home/igalhan/.config/Code/clp/001de9834a40fbde62f409a308aee70e.de/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"de","availableLanguages":{},"_languagePackSupport":true}
 # environment
-BREAKPAD_DUMP_LOCATION = /home/igalhan/.config/Code/exthost Crash Reports
+BREAKPAD_DUMP_LOCATION = /home/iga/.config/Code/exthost Crash Reports
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
-# environment
-GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # makefile
 SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
-# environment
-XMODIFIERS = @im=ibus
 # makefile (from 'makefile', line 12)
 HEADERS = $(wildcard *.h)
 # environment
@@ -139,63 +141,69 @@ MAKELEVEL := 0
 # default
 MAKE = $(MAKE_COMMAND)
 # environment
-PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PATH = /usr/local/bin:/usr/bin:/var/lib/snapd/snap/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/usr/lib/jvm/default/bin
 # default
 MAKEFILES := 
 # environment
-LANGUAGE = de:en_US:en
-# environment
 LC_MONETARY = tr_TR.UTF-8
+# environment
+MOTD_SHOWN = pam
 # automatic
 ^F = $(notdir $^)
 # environment
 LC_TIME = tr_TR.UTF-8
 # environment
-INVOCATION_ID = 56eeb550435d4224b612eb2d20fd0951
+INVOCATION_ID = 5e0f7a70f3c94f7a836b56fd3c1a1b04
 # environment
 VSCODE_LOG_NATIVE = false
 # environment
-USERNAME = igalhan
+USERNAME = iga
+# environment
+GNOME_SETUP_DISPLAY = :1
 # environment
 LC_TELEPHONE = tr_TR.UTF-8
 # automatic
 ?F = $(notdir $?)
 # environment
-GTK_IM_MODULE = ibus
+XDG_CURRENT_DESKTOP = GNOME
 # environment
-XDG_CURRENT_DESKTOP = Unity
+LS_COLORS = 
 # automatic
 +F = $(notdir $+)
 # environment
-DESKTOP_SESSION = pop
+LESS = -R
 # environment
-ORIGINAL_XDG_CURRENT_DESKTOP = pop:GNOME
+DESKTOP_SESSION = gnome
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = GNOME
 # makefile (from 'makefile', line 11)
 OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c))
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
-LOGNAME = igalhan
+LOGNAME = iga
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/visual-studio-code.desktop
 # makefile
 .DEFAULT_GOAL := default
 # environment
-DISPLAY = :1
+SYSTEMD_EXEC_PID = 3544
 # environment
-USER = igalhan
+DISPLAY = :0
 # environment
-GTK_MODULES = gail:atk-bridge:appmenu-gtk-module
+USER = iga
 # default
 MAKE_VERSION := 4.3
 # environment
-MANAGERPID = 1714
+MANAGERPID = 3482
 # environment
 LC_MEASUREMENT = tr_TR.UTF-8
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 10327
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6373
 # environment
-_ = /usr/share/code/code
+PAGER = less
+# environment
+_ = /usr/bin/make
 # environment
 LC_PAPER = tr_TR.UTF-8
 # environment
@@ -203,23 +211,17 @@ XDG_RUNTIME_DIR = /run/user/1000
 # makefile (from 'makefile', line 4)
 CFLAGS = -g -Wall
 # environment
-GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
-# environment
-JOURNAL_STREAM = 8:50571
+JOURNAL_STREAM = 8:36520
 # environment
 XDG_SESSION_CLASS = user
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
 # environment
-HOME = /home/igalhan
-# environment
-QT_IM_MODULE = ibus
+HOME = /home/iga
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-775fe9d6-1.58.2-main.sock
-# environment
-PAPERSIZE = a4
+VSCODE_IPC_HOOK = /run/user/1000/vscode-d1fb0395-1.58.2-main.sock
 # default
 .RECIPEPREFIX := 
 # automatic
@@ -229,17 +231,17 @@ SUFFIXES :=
 # makefile (from 'makefile', line 1)
 TARGET = prog
 # default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink guile load
 # makefile (from 'makefile', line 3)
 CC = gcc
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
-GDMSESSION = pop
+GDMSESSION = gnome
 # environment
 LC_IDENTIFICATION = tr_TR.UTF-8
 # variable set hash-table stats:
-# Load=114/1024=11%, Rehash=0, Collisions=7/155=5%
+# Load=115/1024=11%, Rehash=0, Collisions=8/154=5%
 
 # Pattern-specific Variable Values
 
@@ -247,7 +249,7 @@ LC_IDENTIFICATION = tr_TR.UTF-8
 
 # Directories
 
-# . (device 66307, inode 13902954): 12 files, no impossibilities.
+# . (device 66306, inode 27797757): 12 files, no impossibilities.
 
 # 12 files, no impossibilities in 1 directories.
 
@@ -263,30 +265,44 @@ LC_IDENTIFICATION = tr_TR.UTF-8
 prog: main.o mpc.o
 #  Precious file (prerequisite of .PRECIOUS).
 #  Implicit rule search has not been done.
-#  Last modified 2021-08-02 14:55:56.341604381
+#  Last modified 2021-08-07 16:03:25.596704838
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  Successfully updated.
 #  recipe to execute (from 'makefile', line 20):
 	$(CC) $(OBJECTS) -Wall $(LIBS) -o $@
 
 # Not a target:
 mpc.h:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-29 18:40:17.222121428
+#  Last modified 2021-08-04 12:57:54.691312633
 #  File has been updated.
 #  Successfully updated.
 
 default: prog
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
+# automatic
+# @ := default
+# automatic
+# * := 
+# automatic
+# < := prog
+# automatic
+# + := prog
+# automatic
+# % := 
+# automatic
+# ^ := prog
+# automatic
+# ? := prog
+# automatic
+# | := 
 # variable set hash-table stats:
- 
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
 #  recipe to execute (from 'makefile', line 26):
 	./prog
 
@@ -294,6 +310,14 @@ default: prog
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+# Not a target:
+mpc.c:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2021-08-04 13:05:43.294864658
+#  File has been updated.
+#  Successfully updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
@@ -318,12 +342,12 @@ all: default
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2021-08-02 15:56:54.206225912
+#  Last modified 2021-08-07 16:03:23.509986606
 #  File has been updated.
 #  Successfully updated.
 
@@ -331,63 +355,54 @@ main.o: main.c mpc.h
 #  Precious file (prerequisite of .PRECIOUS).
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'main'
-#  Last modified 2021-08-02 14:55:56.313605436
+#  Last modified 2021-08-07 16:03:25.550037007
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := main.o
-# automatic
-# * := main
-# automatic
-# < := main.c
-# automatic
-# + := main.c mpc.h
-# automatic
-# % := 
-# automatic
-# ^ := main.c mpc.h
-# automatic
-# ? := main.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  Successfully updated.
 #  recipe to execute (from 'makefile', line 15):
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-07-29 18:40:17.222121428
+#  Last modified 2021-08-04 12:57:54.691312633
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 .PHONY: default all clean
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-mpc.o:
+mpc.o: mpc.c mpc.h
 #  Precious file (prerequisite of .PRECIOUS).
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'mpc'
+#  Last modified 2021-08-07 15:16:56.984417524
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 15):
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # files hash-table stats:
-# Load=13/1024=1%, Rehash=0, Collisions=0/43=0%
+# Load=14/1024=1%, Rehash=0, Collisions=0/50=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 173 B / avg = 7 B
-# current buf: size = 8162 B / used = 173 B / count = 24 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 177 B / avg = 7 B
+# current buf: size = 8162 B / used = 177 B / count = 25 / avg = 7 B
 
-# strcache performance: lookups = 53 / hit rate = 54%
+# strcache performance: lookups = 59 / hit rate = 57%
 # hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=0/53=0%
-# Finished Make data base on Mon Aug  2 16:51:12 2021
+# Load=25/8192=0%, Rehash=0, Collisions=0/59=0%
+# Finished Make data base on Sat Aug  7 16:30:08 2021
 
  
