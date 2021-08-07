@@ -10,6 +10,11 @@
             "cwd": "/home/igalhan/Dokumente/Src/igal",
             "binaryPath": "/home/igalhan/Dokumente/Src/igal/prog",
             "binaryArgs": []
+        },
+        {
+            "cwd": "/home/iga/Dokumente/igal",
+            "binaryPath": "/home/iga/Dokumente/igal/prog",
+            "binaryArgs": []
         }
     ]
 }

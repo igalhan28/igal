@@ -1,5 +1,7 @@
 #include "mpc.h"
 
+
+
 #ifdef _WIN32
 
 static char buffer[2048];
@@ -28,6 +30,7 @@ void add_history(char* unused)
 /* Create Esayieration of Possible ideg Types */
 enum { IDEG_SAYI, IDEG_HATA, IDEG_ISLEC, IDEG_IXADE };
 
+
 /* Declare New ideg Struct */
 typedef struct ideg {
   int tip;
@@ -40,6 +43,8 @@ typedef struct ideg {
   struct ideg** hucre;
 } ideg;
 
+
+ideg* degerle(ideg* v);
 
 /* Construct a pointer to a new Number ideg */
 ideg* ideg_sayi(long x)
@@ -149,6 +154,7 @@ void ideg_sil(ideg* v)
       free(v->hucre);
       break;
     }
+    free(v);
 }
 
 ideg* ideg_yukle(ideg* v, ideg* x)
@@ -218,11 +224,11 @@ ideg* ideg_cıkra(ideg* v, int n)
   printf("cıkra");
   ideg* x = v->hucre[n];
 
-  memmove(&v->hucre[n], v->hucre[n + 1], sizeof(ideg*) * (v->tur) - n - 1);
+  memmove(&v->hucre[n], &v->hucre[n + 1], sizeof(ideg*) * (v->tur - n - 1));
 
   v->tur--;
 
-  v->hucre = realloc(&v->hucre, sizeof(ideg*) * v->tur);
+  v->hucre = realloc(v->hucre, sizeof(ideg*) * v->tur);
 
   return x;
 }
@@ -239,7 +245,7 @@ ideg* ixade_degerle(ideg* v)
   for (int i = 0; i < v->tur; i++)
     {
       printf("2");
-      v->hucre[i] = ixade_degerle(v->hucre[i]);
+      v->hucre[i] = degerle(v->hucre[i]);
     }
 
   for (int i = 0; i < v->tur; i++)
@@ -274,17 +280,17 @@ ideg* ixade_degerle(ideg* v)
 
 
   ideg* sonuc = degerle_op(v, d->sem);
-
+  ideg_sil(d);
   return sonuc;
 }
 
 ideg* degerle_op(ideg* x, char* op)
 {
-  printf("degop");
   for (int i = 0; i < x->tur; i++)
     {
       if (x->hucre[i]->tip != IDEG_SAYI)
         {
+          ideg_sil(x);
           return ideg_hata("İşlem yapılacak öge sayı olmak zorunda!");
         }
     }
@@ -295,7 +301,9 @@ ideg* degerle_op(ideg* x, char* op)
     {
       for (int i = 1; i < x->tur; i++)
         {
-          x->hucre[0]->sayi += ideg_cıkra(x, i)->sayi;
+          x->hucre[0]->sayi += x->hucre[1]->sayi;
+          x->tur--;
+          ideg_sil(x->hucre[1]);
         }
     }
 
@@ -303,7 +311,9 @@ ideg* degerle_op(ideg* x, char* op)
     {
       for (int i = 1; i < x->tur; i++)
         {
-          x->hucre[0]->sayi -= ideg_cıkra(x, i)->sayi;
+           x->hucre[0]->sayi -= x->hucre[1]->sayi;
+           x->tur--;
+           ideg_sil(x->hucre[1]);
         }
     }
 
@@ -311,7 +321,9 @@ ideg* degerle_op(ideg* x, char* op)
     {
       for (int i = 1; i < x->tur; i++)
         {
-          x->hucre[0]->sayi *= ideg_cıkra(x, i)->sayi;
+          x->hucre[0]->sayi *= x->hucre[1]->sayi;
+          x->tur--;
+          ideg_sil(x->hucre[1]);
         }
     }
 
@@ -320,13 +332,19 @@ ideg* degerle_op(ideg* x, char* op)
       {
         if (x->hucre[i]->sayi != 0)
           {
-            x->hucre[0]->sayi /= ideg_cıkra(x, i)->sayi;
+            x->hucre[0]->sayi /= x->hucre[1]->sayi;
+            x->tur--;
+            ideg_sil(x->hucre[1]);
           }
         else
           {
             return ideg_hata("Sıfıra bölünmez!");
+            ideg_sil(x);
+            break;
           }
       }
+  return x->hucre[0];
+    
 }
 ideg* degerle(ideg* v)
 {
@@ -367,7 +385,7 @@ int main(int argc, char** argv)
       if (mpc_parse("<stdin>", giris, igal, &r))
         {
           ideg* sonuc = degerle(ideg_oku(r.output));
-          ideg_print(sonuc);
+          ideg_print(sonuc);  
           ideg_sil(sonuc);
           mpc_ast_delete(r.output);
         }
